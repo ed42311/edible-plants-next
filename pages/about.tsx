@@ -1,9 +1,19 @@
-import React, { ReactElement } from 'react'
+import React from 'react'
 
-export default function About(): ReactElement {
+// MUI
+import Typography from '@material-ui/core/Typography'
+
+// Local
+import ProTip from '../src/ProTip'
+import Layout from '../src/Layout'
+
+export default function About() {
   return (
-    <div>
-      <p>This is the about page</p>
-    </div>
+    <Layout>
+      <Typography variant="h4" component="h1" gutterBottom>
+        What&apos;s this all about
+      </Typography>
+      <ProTip />
+    </Layout>
   )
 }

@@ -1,23 +1,19 @@
-import React, { ReactElement } from 'react'
-import Link from 'next/link'
-import styled from 'styled-components'
+import React from 'react'
 
-const Rocket = styled.div`
-  text-align: center;
-  img {
-    width: 630px;
-  }
-`
+// MUI
+import Typography from '@material-ui/core/Typography'
 
-export default function Index(): ReactElement {
+// Local
+import Layout from '../src/Layout'
+import ProTip from '../src/ProTip'
+
+export default function Index() {
   return (
-    <div>
-      <Link href="/about">
-        <a>About Page</a>
-      </Link>
-      <Rocket>
-        <img src="https://media.giphy.com/media/QbumCX9HFFDQA/giphy.gif" />
-      </Rocket>
-    </div>
+    <Layout>
+      <Typography variant="h4" component="h1" gutterBottom>
+        Lookit! Al the thingS!
+      </Typography>
+      <ProTip />
+    </Layout>
   )
 }
