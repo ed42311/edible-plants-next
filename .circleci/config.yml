@@ -1,0 +1,35 @@
+version: 2.1
+orbs:
+  heroku: circleci/heroku@1.0.1
+
+jobs:
+  test:
+    working_directory: ~/CaravanTours-ProxyServer
+    docker:
+      - image: circleci/node:12
+    steps:
+      - checkout
+      - restore_cache:
+          key: dependency-cache-{{ checksum "package-lock.json" }}
+      - run:
+          name: Install Dependencies
+          command: npm install
+      - save_cache:
+          key: dependency-cache-{{ checksum "package-lock.json" }}
+          paths:
+            - /home/circleci/.npm
+      - run:
+          name: Run Tests
+          command: npm run ci-test
+
+workflows:
+  test_then_deploy:
+    jobs:
+      - test
+      - heroku/deploy-via-git:
+          requires:
+            - test
+          filters:
+            branches:
+              only:
+                - master
